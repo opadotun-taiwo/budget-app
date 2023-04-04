@@ -64,7 +64,8 @@ function App() {
         handleAlert({type: 'success', text: 'item successfully edited'})
       }else{
           //also amount:amount
-        const singleExpense = {id:uuidv4(), charge:charge, amount:amount}
+        const newDate = new Date().toLocaleString();
+        const singleExpense = {id:uuidv4(), charge:charge, amount:amount, newDate }
         //use spread operator to copy the exiting array it prevents override
         setExpenses([...expenses, singleExpense])
         handleAlert({type: 'success', text: 'item added'})
@@ -119,7 +120,7 @@ function App() {
         <span className="total">
           $
           {expenses.reduce((acc, curr) => {
-            //convrt input to numbers becuase it is collected as str
+            //convert input to numbers becuase it is collected as str
             return (acc += parseInt(curr.amount));
           }, 0)}
         </span>
